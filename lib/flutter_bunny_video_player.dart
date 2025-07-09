@@ -1,4 +1,6 @@
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -27,6 +29,7 @@ class BunnyPlayerView extends StatelessWidget {
   Widget build(BuildContext context) {
     const viewType = 'bunny_player_view';
 
+    if(Platform.isMacOS){
     return UiKitView(
       viewType: viewType,
       layoutDirection: TextDirection.ltr,
@@ -38,5 +41,10 @@ class BunnyPlayerView extends StatelessWidget {
       },
       creationParamsCodec: const StandardMessageCodec(),
     );
+    }
+    if(Platform.isAndroid){
+      return Text("android view");
+    }
+    return Container();
   }
 }
