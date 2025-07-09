@@ -10,9 +10,9 @@
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
 		331C808B294A63AB00263BE5 /* RunnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C807B294A618700263BE5 /* RunnerTests.swift */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
+		6509F76D2E1EFF4C003F4061 /* BunnyFlutterPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6509F76C2E1EFF4C003F4061 /* BunnyFlutterPlayer.swift */; };
 		658E55552E1DA635003B2D3A /* BunnyStreamPlayer in Frameworks */ = {isa = PBXBuildFile; productRef = 658E55542E1DA635003B2D3A /* BunnyStreamPlayer */; };
 		658E55582E1DA78B003B2D3A /* BunnyPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658E55572E1DA78B003B2D3A /* BunnyPlayerViewController.swift */; };
-		658E555A2E1DA7D1003B2D3A /* BunnyExtensionPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658E55592E1DA7D1003B2D3A /* BunnyExtensionPlayer.swift */; };
 		658E555C2E1DAA43003B2D3A /* Bridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658E555B2E1DAA43003B2D3A /* Bridge.swift */; };
 		74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74858FAE1ED2DC5600515810 /* AppDelegate.swift */; };
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
@@ -52,8 +52,8 @@
 		331C8081294A63A400263BE5 /* RunnerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RunnerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppFrameworkInfo.plist; path = Flutter/AppFrameworkInfo.plist; sourceTree = "<group>"; };
 		4C834EAE63776128286245FD /* Pods-RunnerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.release.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.release.xcconfig"; sourceTree = "<group>"; };
+		6509F76C2E1EFF4C003F4061 /* BunnyFlutterPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BunnyFlutterPlayer.swift; sourceTree = "<group>"; };
 		658E55572E1DA78B003B2D3A /* BunnyPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BunnyPlayerViewController.swift; sourceTree = "<group>"; };
-		658E55592E1DA7D1003B2D3A /* BunnyExtensionPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BunnyExtensionPlayer.swift; sourceTree = "<group>"; };
 		658E555B2E1DAA43003B2D3A /* Bridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bridge.swift; sourceTree = "<group>"; };
 		665AEB0BFE77E48DDAA194D7 /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A98A4D7BF41D9EAE8BCC28F /* Pods-Runner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"; sourceTree = "<group>"; };
@@ -156,8 +156,8 @@
 				74858FAE1ED2DC5600515810 /* AppDelegate.swift */,
 				74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */,
 				658E55572E1DA78B003B2D3A /* BunnyPlayerViewController.swift */,
-				658E55592E1DA7D1003B2D3A /* BunnyExtensionPlayer.swift */,
 				658E555B2E1DAA43003B2D3A /* Bridge.swift */,
+				6509F76C2E1EFF4C003F4061 /* BunnyFlutterPlayer.swift */,
 			);
 			path = Runner;
 			sourceTree = "<group>";
@@ -291,9 +291,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -391,10 +395,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				658E555C2E1DAA43003B2D3A /* Bridge.swift in Sources */,
+				6509F76D2E1EFF4C003F4061 /* BunnyFlutterPlayer.swift in Sources */,
 				74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */,
 				1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */,
 				658E55582E1DA78B003B2D3A /* BunnyPlayerViewController.swift in Sources */,
-				658E555A2E1DA7D1003B2D3A /* BunnyExtensionPlayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
