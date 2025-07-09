@@ -1,6 +1,4 @@
 
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -12,27 +10,33 @@ class FlutterBunnyVideoPlayer {
   }
 }
 class BunnyPlayerView extends StatelessWidget {
+  final String? accessKey;
   final String videoId;
+  final int libraryId;
+  final String? playIconAsset;
 
-  const BunnyPlayerView({super.key, required this.videoId});
+  const BunnyPlayerView({
+    super.key,
+    required this.accessKey,
+    required this.videoId,
+    required this.libraryId,
+    this.playIconAsset,
+  });
 
   @override
   Widget build(BuildContext context) {
     const viewType = 'bunny_player_view';
 
-    if (Platform.isIOS) {
-      return SizedBox(
-        width: 300,
-        height: 200,
-        child: UiKitView(
-          viewType: viewType,
-          layoutDirection: TextDirection.ltr,
-          creationParams: {'videoId': videoId},
-          creationParamsCodec: const StandardMessageCodec(),
-        ),
-      );
-    }
-
-    return const Text("BunnyPlayer only supports iOS.");
+    return UiKitView(
+      viewType: viewType,
+      layoutDirection: TextDirection.ltr,
+      creationParams: {
+        'accessKey': accessKey,
+        'videoId': videoId,
+        'libraryId': libraryId,
+        'playIconAsset': playIconAsset,
+      },
+      creationParamsCodec: const StandardMessageCodec(),
+    );
   }
 }

@@ -10,10 +10,16 @@ import SwiftUI
 import UIKit
 import BunnyStreamPlayer
 class BunnyPlayerViewController: UIViewController {
-    private let videoId: String
+    let accessKey: String?
+    let videoId: String
+    let libraryId: Int
+    let playIconAsset: String
 
-    init(videoId: String) {
+    init(accessKey: String?, videoId: String, libraryId: Int,playIconAsset: String) {
+        self.accessKey = accessKey
         self.videoId = videoId
+        self.libraryId = libraryId
+        self.playIconAsset = playIconAsset
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -24,12 +30,40 @@ class BunnyPlayerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let playerView = BunnyStreamPlayer.make(videoId: videoId)
+        let iconImage = loadFlutterAsset(named: playIconAsset)
+        let icons = PlayerIcons(play: iconImage)
+        
+        let playerView = BunnyFlutterPlayer(
+            accessKey: accessKey,
+            videoId: videoId,
+            libraryId: libraryId,
+            playerIcons: icons
+        )
+
         let hostingController = UIHostingController(rootView: playerView)
         addChild(hostingController)
-        hostingController.view.frame = view.bounds
-        hostingController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        // Auto layout to match Flutter size
+        hostingController.view.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(hostingController.view)
         hostingController.didMove(toParent: self)
+
+        NSLayoutConstraint.activate([
+            hostingController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            hostingController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            hostingController.view.topAnchor.constraint(equalTo: view.topAnchor),
+            hostingController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+       // hostingController.didMove(toParent: self)
+    }
+
+    private func loadFlutterAsset(named asset: String) -> Image {
+        let key = FlutterDartProject.lookupKey(forAsset: asset)
+        if let path = Bundle.main.path(forResource: key, ofType: nil),
+           let uiImage = UIImage(contentsOfFile: path) {
+            return Image(uiImage: uiImage)
+        } else {
+            return Image(systemName: "play.fill")
+        }
     }
 }
+

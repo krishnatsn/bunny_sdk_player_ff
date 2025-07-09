@@ -19,9 +19,19 @@ class BunnyPlayerPlatformView: NSObject, FlutterPlatformView {
         messenger: FlutterBinaryMessenger?
     ) {
         let params = args as? [String: Any]
+        
+        
+        let playIconAsset = params?["playIconAsset"] as? String ?? ""
+        let accessKey = params?["accessKey"]
+        let libraryId = params?["libraryId"] as? Int ?? 0
         let videoId = params?["videoId"] as? String ?? ""
-
-        let controller = BunnyPlayerViewController(videoId: videoId)
+        
+        let controller = BunnyPlayerViewController(
+            accessKey: accessKey as? String ?? nil,
+            videoId: videoId,
+            libraryId: libraryId,
+            playIconAsset: playIconAsset
+        )
         _view = controller.view
         super.init()
     }
