@@ -4,13 +4,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'flutter_bunny_video_player_platform_interface.dart';
-
-class FlutterBunnyVideoPlayer {
-  Future<String?> getPlatformVersion() {
-    return FlutterBunnyVideoPlayerPlatform.instance.getPlatformVersion();
-  }
-}
 class BunnyPlayerView extends StatelessWidget {
   final String? accessKey;
   final String videoId;
@@ -42,9 +35,17 @@ class BunnyPlayerView extends StatelessWidget {
       creationParamsCodec: const StandardMessageCodec(),
     );
     }
-    if(Platform.isAndroid){
-      return Text("android view");
-    }
-    return Container();
+    // if(Platform.isAndroid){
+    //   return Text("helo");
+    // }
+    return AndroidView(
+            viewType: viewType,
+            creationParams: {
+        'accessKey': accessKey,
+        'videoId': videoId,
+        'libraryId': libraryId,
+      },
+            creationParamsCodec: const StandardMessageCodec(),
+          );
   }
 }
