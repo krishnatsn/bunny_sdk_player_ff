@@ -1,3 +1,23 @@
+
+buildscript {
+
+    repositories {
+        google()
+        mavenCentral()
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+    dependencies {
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:2.0.0'
+    }
+
+    // dependencies {
+    //     classpath "com.android.tools.build:gradle:$gradle_plugin"
+    //     classpath 'com.google.gms:google-services:4.4.2'
+    //     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    //     classpath 'com.google.firebase:firebase-crashlytics-gradle:3.0.2'
+    // }
+}
+
 allprojects {
     repositories {
         google()
