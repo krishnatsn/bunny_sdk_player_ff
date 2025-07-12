@@ -16,7 +16,6 @@ class BunnyPlayerViewFactory (
 
     override fun create(context: Context, id: Int, args: Any?): PlatformView {
         val creationParams = args as? Map<String, Any>
-        val methodChannel = MethodChannel(messenger, "my_compose_view_channel_$id")
-        return BunnyVideoPlatformView(context, id, creationParams, methodChannel, activityProvider()) // Pass the activity
+        return BunnyVideoPlatformView(context, creationParams) // Pass the activity
     }
 }
