@@ -34,8 +34,9 @@ class BunnyVideoPlatformView(
     private val rootView: View
 
     init {
-       
-        rootView = LayoutInflater.from(context)
+        val themedContext = ContextThemeWrapper(context, androidx.appcompat.R.style.Theme_AppCompat)
+
+        rootView = LayoutInflater.from(themedContext)
             .inflate(R.layout.activity_flutter_bunny_video, null)
 
         // Optional: find and configure the BunnyStreamPlayer view
