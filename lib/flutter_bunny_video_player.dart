@@ -1,7 +1,10 @@
 
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 
 class BunnyPlayerView extends StatelessWidget {
@@ -38,14 +41,61 @@ class BunnyPlayerView extends StatelessWidget {
     // if(Platform.isAndroid){
     //   return Text("helo");
     // }
-    return AndroidView(
-            viewType: viewType,
-            creationParams: {
-        'accessKey': accessKey,
-        'videoId': videoId,
-        'libraryId': libraryId,
+    return SizedBox(
+      height: 300,
+      child: BunnyStreamPlatformView(
+              viewType: viewType,
+              accessKey: accessKey,
+              videoId: videoId,
+              libraryId: libraryId,
+            ),
+    );
+  }
+}
+
+
+class BunnyStreamPlatformView extends StatelessWidget {
+  final String viewType;
+  final String? accessKey;
+  final String videoId;
+  final int libraryId;
+
+  const BunnyStreamPlatformView({
+    super.key,
+    required this.viewType,
+    required this.videoId,
+    required this.libraryId,
+    this.accessKey,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final Map<String, dynamic> creationParams = {
+      'accessKey': accessKey,
+      'videoId': videoId,
+      'libraryId': libraryId,
+    };
+
+    return PlatformViewLink(
+      viewType: viewType,
+      surfaceFactory: (context, controller) {
+        return AndroidViewSurface(
+          controller: controller as AndroidViewController,
+          gestureRecognizers: const <Factory<OneSequenceGestureRecognizer>>{},
+          hitTestBehavior: PlatformViewHitTestBehavior.opaque,
+        );
       },
-            creationParamsCodec: const StandardMessageCodec(),
-          );
+      onCreatePlatformView: (PlatformViewCreationParams params) {
+        return PlatformViewsService.initSurfaceAndroidView(
+          id: params.id,
+          viewType: viewType,
+          layoutDirection: TextDirection.ltr,
+          creationParams: creationParams,
+          creationParamsCodec: const StandardMessageCodec(),
+        )
+          ..addOnPlatformViewCreatedListener(params.onPlatformViewCreated)
+          ..create();
+      },
+    );
   }
 }
