@@ -20,9 +20,7 @@ class FlutterBunnyVideoPlayerPlugin: FlutterPlugin, ActivityAware { // Implement
       .platformViewRegistry
       .registerViewFactory(
         "bunny_player_view",
-        BunnyPlayerViewFactory(flutterPluginBinding.binaryMessenger) { // Pass the activity provider
-          activity
-        }
+        BunnyPlayerViewFactory()
       )
   }
 

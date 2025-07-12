@@ -9,10 +9,7 @@ import io.flutter.plugin.common.StandardMessageCodec
 import io.flutter.plugin.platform.PlatformView
 import io.flutter.plugin.platform.PlatformViewFactory
 
-class BunnyPlayerViewFactory (
-    private val messenger: BinaryMessenger,
-    private val activityProvider: () -> ComponentActivity? // Add a lambda to get the activity
-) : PlatformViewFactory(StandardMessageCodec.INSTANCE) {
+class BunnyPlayerViewFactory () : PlatformViewFactory(StandardMessageCodec.INSTANCE) {
 
     override fun create(context: Context, id: Int, args: Any?): PlatformView {
         val creationParams = args as? Map<String, Any>

@@ -35,14 +35,18 @@ class BunnyVideoPlatformView(
 
     init {
         val themedContext = ContextThemeWrapper(context, androidx.appcompat.R.style.Theme_AppCompat)
-
+        // Extract creation params
+        val videoId = creationParams?.get("videoId") as? String
+        val accessKey = creationParams?.get("accessKey") as? String ?: ""
+        val libraryId = (creationParams?.get("libraryId") as? Number)?.toLong() ?: 0L
+        val playIconAsset = creationParams?.get("playIconAsset") as? String
         rootView = LayoutInflater.from(themedContext)
             .inflate(R.layout.activity_flutter_bunny_video, null)
-
+        BunnyStreamApi.initialize(context, accessKey, libraryId)
         // Optional: find and configure the BunnyStreamPlayer view
         val videoPlayer = rootView.findViewById<BunnyStreamPlayer>(R.id.videoPlayer)
-        BunnyStreamApi.initialize(context.applicationContext, "", 759)
-        videoPlayer.playVideo("eb1c4f77-0cda-46be-b47d-1118ad7c2ffe", 759)
+
+        videoPlayer.playVideo(videoId!!, libraryId)
     }
 
     override fun getView(): View = rootView

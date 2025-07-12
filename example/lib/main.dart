@@ -32,8 +32,7 @@ class _MyAppState extends State<MyApp> {
         ),
         body: const Center(
           child:  SizedBox(
-            height: 500,
-            width: 300,
+           height: 300,
             child: BunnyPlayerView(
   accessKey: null,
   videoId: "eb1c4f77-0cda-46be-b47d-1118ad7c2ffe",
