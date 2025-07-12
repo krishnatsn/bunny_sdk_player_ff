@@ -1,7 +1,10 @@
 package com.example.flutter_bunny_video_player
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
+import android.content.ContextWrapper
+import android.content.pm.ActivityInfo
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.graphics.drawable.Drawable
@@ -44,7 +47,7 @@ class BunnyVideoPlatformView(
     private val rootView: View
 
     init {
-        val wrappedContext = ContextThemeWrapper(context, R.style.Theme_BunnyStream)
+        val wrappedContext = ContextThemeWrapper(context, R.style.Theme_AppCompat)
         // Extract creation params
         val videoId = creationParams?.get("videoId") as? String
         val accessKey = creationParams?.get("accessKey") as? String ?: ""
@@ -76,7 +79,14 @@ class BunnyVideoPlatformView(
         return wrappedDrawable
     }
     override fun getView(): View = rootView
-
+    fun getActivityFromContext(context: Context): Activity? {
+        var ctx = context
+        while (ctx is ContextWrapper) {
+            if (ctx is Activity) return ctx
+            ctx = ctx.baseContext
+        }
+        return null
+    }
     override fun dispose() {
 
     }

@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 
-class BunnyPlayerView extends StatelessWidget {
+class BunnyPlayerView extends StatefulWidget {
   final String? accessKey;
   final String videoId;
   final int libraryId;
@@ -22,6 +22,23 @@ class BunnyPlayerView extends StatelessWidget {
   });
 
   @override
+  State<BunnyPlayerView> createState() => _BunnyPlayerViewState();
+}
+
+class _BunnyPlayerViewState extends State<BunnyPlayerView> {
+
+  @override
+  void initState() {
+// SystemChrome.setPreferredOrientations([
+//   DeviceOrientation.portraitUp,
+//   DeviceOrientation.portraitDown,
+//   DeviceOrientation.landscapeLeft,
+//   DeviceOrientation.landscapeRight,
+// ]);
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     const viewType = 'bunny_player_view';
 
@@ -30,10 +47,10 @@ class BunnyPlayerView extends StatelessWidget {
       viewType: viewType,
       layoutDirection: TextDirection.ltr,
       creationParams: {
-        'accessKey': accessKey,
-        'videoId': videoId,
-        'libraryId': libraryId,
-        'playIconAsset': playIconAsset,
+        'accessKey': widget.accessKey,
+        'videoId': widget.videoId,
+        'libraryId': widget.libraryId,
+        'playIconAsset': widget.playIconAsset,
       },
       creationParamsCodec: const StandardMessageCodec(),
     );
@@ -45,9 +62,9 @@ class BunnyPlayerView extends StatelessWidget {
       height: 300,
       child: BunnyStreamPlatformView(
               viewType: viewType,
-              accessKey: accessKey,
-              videoId: videoId,
-              libraryId: libraryId,
+              accessKey: widget.accessKey,
+              videoId: widget.videoId,
+              libraryId: widget.libraryId,
             ),
     );
   }

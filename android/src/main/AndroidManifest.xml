@@ -3,8 +3,9 @@
 
     <application>
         <activity
-            android:name=".FlutterBunnyVideoActivity"
-            android:exported="false" />
+            android:name="net.bunnystream.bunnystreamplayer.ui.fullscreen.FullScreenPlayerActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
     </application>
 
 </manifest>
