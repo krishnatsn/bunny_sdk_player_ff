@@ -1,17 +1,13 @@
 
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 
-import 'flutter_bunny_video_player_platform_interface.dart';
-
-class FlutterBunnyVideoPlayer {
-  Future<String?> getPlatformVersion() {
-    return FlutterBunnyVideoPlayerPlatform.instance.getPlatformVersion();
-  }
-}
-class BunnyPlayerView extends StatelessWidget {
+class BunnyPlayerView extends StatefulWidget {
   final String? accessKey;
   final String videoId;
   final int libraryId;
@@ -26,6 +22,23 @@ class BunnyPlayerView extends StatelessWidget {
   });
 
   @override
+  State<BunnyPlayerView> createState() => _BunnyPlayerViewState();
+}
+
+class _BunnyPlayerViewState extends State<BunnyPlayerView> {
+
+  @override
+  void initState() {
+// SystemChrome.setPreferredOrientations([
+//   DeviceOrientation.portraitUp,
+//   DeviceOrientation.portraitDown,
+//   DeviceOrientation.landscapeLeft,
+//   DeviceOrientation.landscapeRight,
+// ]);
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     const viewType = 'bunny_player_view';
 
@@ -34,17 +47,72 @@ class BunnyPlayerView extends StatelessWidget {
       viewType: viewType,
       layoutDirection: TextDirection.ltr,
       creationParams: {
-        'accessKey': accessKey,
-        'videoId': videoId,
-        'libraryId': libraryId,
-        'playIconAsset': playIconAsset,
+        'accessKey': widget.accessKey,
+        'videoId': widget.videoId,
+        'libraryId': widget.libraryId,
+        'playIconAsset': widget.playIconAsset,
       },
       creationParamsCodec: const StandardMessageCodec(),
     );
     }
-    if(Platform.isAndroid){
-      return Text("android view");
-    }
-    return Container();
+    // if(Platform.isAndroid){
+    //   return Text("helo");
+    // }
+    return SizedBox(
+      height: 300,
+      child: BunnyStreamPlatformView(
+              viewType: viewType,
+              accessKey: widget.accessKey,
+              videoId: widget.videoId,
+              libraryId: widget.libraryId,
+            ),
+    );
+  }
+}
+
+
+class BunnyStreamPlatformView extends StatelessWidget {
+  final String viewType;
+  final String? accessKey;
+  final String videoId;
+  final int libraryId;
+
+  const BunnyStreamPlatformView({
+    super.key,
+    required this.viewType,
+    required this.videoId,
+    required this.libraryId,
+    this.accessKey,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final Map<String, dynamic> creationParams = {
+      'accessKey': accessKey,
+      'videoId': videoId,
+      'libraryId': libraryId,
+    };
+
+    return PlatformViewLink(
+      viewType: viewType,
+      surfaceFactory: (context, controller) {
+        return AndroidViewSurface(
+          controller: controller as AndroidViewController,
+          gestureRecognizers: const <Factory<OneSequenceGestureRecognizer>>{},
+          hitTestBehavior: PlatformViewHitTestBehavior.opaque,
+        );
+      },
+      onCreatePlatformView: (PlatformViewCreationParams params) {
+        return PlatformViewsService.initSurfaceAndroidView(
+          id: params.id,
+          viewType: viewType,
+          layoutDirection: TextDirection.ltr,
+          creationParams: creationParams,
+          creationParamsCodec: const StandardMessageCodec(),
+        )
+          ..addOnPlatformViewCreatedListener(params.onPlatformViewCreated)
+          ..create();
+      },
+    );
   }
 }
