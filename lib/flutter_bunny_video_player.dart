@@ -1,4 +1,3 @@
-
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
@@ -26,7 +25,6 @@ class BunnyPlayerView extends StatefulWidget {
 }
 
 class _BunnyPlayerViewState extends State<BunnyPlayerView> {
-
   @override
   void initState() {
 // SystemChrome.setPreferredOrientations([
@@ -42,42 +40,25 @@ class _BunnyPlayerViewState extends State<BunnyPlayerView> {
   Widget build(BuildContext context) {
     const viewType = 'bunny_player_view';
 
-    if(Platform.isMacOS){
-    return UiKitView(
-      viewType: viewType,
-      layoutDirection: TextDirection.ltr,
-      creationParams: {
-        'accessKey': widget.accessKey,
-        'videoId': widget.videoId,
-        'libraryId': widget.libraryId,
-        'playIconAsset': widget.playIconAsset,
-      },
-      creationParamsCodec: const StandardMessageCodec(),
-    );
+    if (Platform.isAndroid) {
+      BunnyStreamAndroidPlatformView(
+        viewType: viewType,
+        accessKey: widget.accessKey,
+        videoId: widget.videoId,
+        libraryId: widget.libraryId,
+      );
     }
-    // if(Platform.isAndroid){
-    //   return Text("helo");
-    // }
-    return SizedBox(
-      height: 300,
-      child: BunnyStreamPlatformView(
-              viewType: viewType,
-              accessKey: widget.accessKey,
-              videoId: widget.videoId,
-              libraryId: widget.libraryId,
-            ),
-    );
+    return const SizedBox();
   }
 }
 
-
-class BunnyStreamPlatformView extends StatelessWidget {
+class BunnyStreamAndroidPlatformView extends StatelessWidget {
   final String viewType;
   final String? accessKey;
   final String videoId;
   final int libraryId;
 
-  const BunnyStreamPlatformView({
+  const BunnyStreamAndroidPlatformView({
     super.key,
     required this.viewType,
     required this.videoId,
