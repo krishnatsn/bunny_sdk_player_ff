@@ -10,14 +10,11 @@ class BunnyPlayerView extends StatefulWidget {
   final String? accessKey;
   final String videoId;
   final int libraryId;
-  final String? playIconAsset;
-
   const BunnyPlayerView({
     super.key,
     required this.accessKey,
     required this.videoId,
     required this.libraryId,
-    this.playIconAsset,
   });
 
   @override
@@ -27,12 +24,12 @@ class BunnyPlayerView extends StatefulWidget {
 class _BunnyPlayerViewState extends State<BunnyPlayerView> {
   @override
   void initState() {
-// SystemChrome.setPreferredOrientations([
-//   DeviceOrientation.portraitUp,
-//   DeviceOrientation.portraitDown,
-//   DeviceOrientation.landscapeLeft,
-//   DeviceOrientation.landscapeRight,
-// ]);
+SystemChrome.setPreferredOrientations([
+  DeviceOrientation.portraitUp,
+  DeviceOrientation.portraitDown,
+  DeviceOrientation.landscapeLeft,
+  DeviceOrientation.landscapeRight,
+]);
     super.initState();
   }
 
