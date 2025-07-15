@@ -41,7 +41,7 @@ class _BunnyPlayerViewState extends State<BunnyPlayerView> {
     const viewType = 'bunny_player_view';
 
     if (Platform.isAndroid) {
-      BunnyStreamAndroidPlatformView(
+    return  BunnyStreamAndroidPlatformView(
         viewType: viewType,
         accessKey: widget.accessKey,
         videoId: widget.videoId,
