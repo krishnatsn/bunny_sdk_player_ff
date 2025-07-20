@@ -1,7 +1,9 @@
 name: flutter_bunny_video_player
 description: "Flutter Bunny Video Player"
-version: 0.0.1
-homepage:
+homepage: https://github.com/RootHex200/flutter_bunny_video_player_android.git
+repository: https://github.com/RootHex200/flutter_bunny_video_player_android
+version: 1.0.0
+
 
 environment:
   sdk: ^3.5.0
