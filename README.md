@@ -2,6 +2,12 @@
 
 A Flutter plugin that provides a native video player implementation for Android using Bunny.net streaming services. This plugin allows you to easily integrate and play videos from your Bunny Stream library in your Flutter applications.
 
+## Platform Support
+
+| Android | iOS | MacOS | Web | Linux | Windows |
+|---------|-----|-------|-----|--------|----------|
+| ✅      | ❌   | ❌     | ❌   | ❌      | ❌        |
+
 ## Features
 
 - Native Android video player implementation
@@ -14,7 +20,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  flutter_bunny_video_player: ^1.0.0
+  flutter_bunny_video_player: ^1.0.1
 ```
 
 Or install via command line:
