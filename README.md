@@ -20,7 +20,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  flutter_bunny_video_player: ^1.0.1
+  flutter_bunny_video_player: ^1.0.2
 ```
 
 Or install via command line:
