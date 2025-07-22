@@ -47,7 +47,7 @@ class BunnyVideoPlatformView(
     private val rootView: View
 
     init {
-        val wrappedContext = ContextThemeWrapper(context, R.style.Theme_AppCompat)
+        val wrappedContext = ContextThemeWrapper(context, androidx.appcompat.R.style.Theme_AppCompat)
         // Extract creation params
         val videoId = creationParams?.get("videoId") as? String
         val accessKey = creationParams?.get("accessKey") as? String ?: ""
