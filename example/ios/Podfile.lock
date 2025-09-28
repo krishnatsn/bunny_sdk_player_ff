@@ -1,27 +1,15 @@
 PODS:
   - Flutter (1.0.0)
-  - flutter_bunny_video_player (0.0.1):
-    - Flutter
-  - integration_test (0.0.1):
-    - Flutter
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
-  - flutter_bunny_video_player (from `.symlinks/plugins/flutter_bunny_video_player/ios`)
-  - integration_test (from `.symlinks/plugins/integration_test/ios`)
 
 EXTERNAL SOURCES:
   Flutter:
     :path: Flutter
-  flutter_bunny_video_player:
-    :path: ".symlinks/plugins/flutter_bunny_video_player/ios"
-  integration_test:
-    :path: ".symlinks/plugins/integration_test/ios"
 
 SPEC CHECKSUMS:
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
-  flutter_bunny_video_player: f26cbbf307f059512b01af978477355318e2c59e
-  integration_test: 4a889634ef21a45d28d50d622cf412dc6d9f586e
 
 PODFILE CHECKSUM: 819463e6a0290f5a72f145ba7cde16e8b6ef0796
 
