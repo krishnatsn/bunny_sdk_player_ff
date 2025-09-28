@@ -17,6 +17,7 @@ allprojects {
     repositories {
         google()
         mavenCentral()
+
     }
 }
 
@@ -71,8 +72,8 @@ android {
 }
 
 dependencies {
-    implementation("net.bunny:api:3.0.0")
-    implementation("net.bunny:player:3.0.0")
+    implementation("com.github.RootHex200.bunny-stream-android:bunny-stream-api:v1.1.4")
+    implementation("com.github.RootHex200.bunny-stream-android:bunny-stream-player:v1.1.4")
 
     implementation 'androidx.appcompat:appcompat:1.7.1'
     implementation 'com.google.android.material:material:1.12.0'
