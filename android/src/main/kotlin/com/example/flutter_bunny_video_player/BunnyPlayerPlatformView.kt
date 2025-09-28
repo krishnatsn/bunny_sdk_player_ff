@@ -36,6 +36,7 @@ import androidx.lifecycle.Lifecycle
 import net.bunny.api.BunnyStreamApi
 import net.bunny.bunnystreamplayer.model.PlayerIconSet
 import net.bunny.bunnystreamplayer.ui.BunnyStreamPlayer
+import kotlin.math.exp
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter", "ResourceAsColor")
 class BunnyVideoPlatformView(
@@ -51,6 +52,8 @@ class BunnyVideoPlatformView(
         val videoId = creationParams?.get("videoId") as? String
         val accessKey = creationParams?.get("accessKey") as? String ?: ""
         val libraryId = (creationParams?.get("libraryId") as? Number)?.toLong() ?: 0L
+        val token = (creationParams?.get("token") as? String)
+        val expire = (creationParams?.get("expire") as? Number)?.toLong()
         val playIconAsset = creationParams?.get("playIconAsset") as? String
         rootView = LayoutInflater.from(wrappedContext)
             .inflate(R.layout.activity_flutter_bunny_video, null)
@@ -65,7 +68,18 @@ class BunnyVideoPlatformView(
             fullscreenOnIcon = R.drawable.ic_fullscreen,
             fullscreenOffIcon = R.drawable.ic_fullscreen_exit,
         )
-        videoPlayer.playVideo(videoId!!, libraryId,"")
+        if(token==null && expire==null){
+            videoPlayer.playVideo(videoId!!, libraryId,"")
+        }else{
+            videoPlayer.playVideoWithToken(
+                videoId = videoId!!,
+                token = token,
+                expires = expire,
+                libraryId = libraryId,
+                videoTitle = ""
+            );
+        }
+        //
     }
     fun getTintedDrawable(
         context: Context,
