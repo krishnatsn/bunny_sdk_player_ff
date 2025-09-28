@@ -17,14 +17,6 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-        maven {
-            url = uri("https://maven.pkg.github.com/BunnyWay/bunny-stream-android")
-            credentials {
-                // Use environment variables for GitHub Packages authentication
-                // Ensure GITHUB_ACTOR and GITHUB_TOKEN are set in your environment
-
-            }
-        }
     }
 }
 
@@ -79,8 +71,8 @@ android {
 }
 
 dependencies {
-    implementation("net.bunnystream:api:1.0.0")
-    implementation("net.bunnystream:player:1.0.0")
+    implementation("net.bunny:api:3.0.0")
+    implementation("net.bunny:player:3.0.0")
 
     implementation 'androidx.appcompat:appcompat:1.7.1'
     implementation 'com.google.android.material:material:1.12.0'

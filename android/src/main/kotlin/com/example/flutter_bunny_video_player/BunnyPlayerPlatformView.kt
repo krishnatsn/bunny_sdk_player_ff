@@ -33,10 +33,9 @@ import androidx.core.graphics.drawable.DrawableCompat
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.platform.PlatformView
 import androidx.lifecycle.Lifecycle
-import net.bunnystream.api.BunnyStreamApi
-import net.bunnystream.bunnystreamplayer.model.PlayerIconSet
-import net.bunnystream.bunnystreamplayer.ui.BunnyStreamPlayer
-
+import net.bunny.api.BunnyStreamApi
+import net.bunny.bunnystreamplayer.model.PlayerIconSet
+import net.bunny.bunnystreamplayer.ui.BunnyStreamPlayer
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter", "ResourceAsColor")
 class BunnyVideoPlatformView(
@@ -47,7 +46,7 @@ class BunnyVideoPlatformView(
     private val rootView: View
 
     init {
-        val wrappedContext = ContextThemeWrapper(context, androidx.appcompat.R.style.Theme_AppCompat)
+        val wrappedContext = ContextThemeWrapper(context, androidx.appcompat.R.style.Theme_AppCompat_NoActionBar)
         // Extract creation params
         val videoId = creationParams?.get("videoId") as? String
         val accessKey = creationParams?.get("accessKey") as? String ?: ""
@@ -60,13 +59,13 @@ class BunnyVideoPlatformView(
 
         val videoPlayer = rootView.findViewById<BunnyStreamPlayer>(R.id.videoPlayer)
         videoPlayer.iconSet = PlayerIconSet(
-             rewindIcon = R.drawable.ic_replay,
-              forwardIcon = R.drawable.ic_forward,
-             settingsIcon = R.drawable.ic_setting,
-           fullscreenOnIcon = R.drawable.ic_fullscreen,
-            fullscreenOffIcon= R.drawable.ic_fullscreen_exit,
+            rewindIcon = R.drawable.ic_replay,
+            forwardIcon = R.drawable.ic_forward,
+            settingsIcon = R.drawable.ic_setting,
+            fullscreenOnIcon = R.drawable.ic_fullscreen,
+            fullscreenOffIcon = R.drawable.ic_fullscreen_exit,
         )
-        videoPlayer.playVideo(videoId!!, libraryId)
+        videoPlayer.playVideo(videoId!!, libraryId,"")
     }
     fun getTintedDrawable(
         context: Context,
