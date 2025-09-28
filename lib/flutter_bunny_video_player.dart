@@ -10,11 +10,15 @@ class BunnyPlayerView extends StatefulWidget {
   final String? accessKey;
   final String videoId;
   final int libraryId;
+    final String? token;
+  final int? expire;
   const BunnyPlayerView({
     super.key,
     required this.accessKey,
     required this.videoId,
     required this.libraryId,
+    this.token,
+    this.expire,
   });
 
   @override
@@ -43,6 +47,8 @@ SystemChrome.setPreferredOrientations([
         accessKey: widget.accessKey,
         videoId: widget.videoId,
         libraryId: widget.libraryId,
+        token: widget.token,
+        expire: widget.expire,
       );
     }
     return const SizedBox();
@@ -54,6 +60,8 @@ class BunnyStreamAndroidPlatformView extends StatelessWidget {
   final String? accessKey;
   final String videoId;
   final int libraryId;
+  final String? token;
+  final int? expire;
 
   const BunnyStreamAndroidPlatformView({
     super.key,
@@ -61,6 +69,8 @@ class BunnyStreamAndroidPlatformView extends StatelessWidget {
     required this.videoId,
     required this.libraryId,
     this.accessKey,
+    this.token,
+    this.expire,
   });
 
   @override
@@ -69,6 +79,8 @@ class BunnyStreamAndroidPlatformView extends StatelessWidget {
       'accessKey': accessKey,
       'videoId': videoId,
       'libraryId': libraryId,
+      'token': token,
+      'expire':expire,
     };
 
     return PlatformViewLink(
