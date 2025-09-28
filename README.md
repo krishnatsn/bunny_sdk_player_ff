@@ -20,7 +20,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  flutter_bunny_video_player: ^1.0.2
+  flutter_bunny_video_player: ^1.0.3
 ```
 
 Or install via command line:
@@ -31,62 +31,29 @@ flutter pub add flutter_bunny_video_player
 
 Add the following Gradle configuration to your Android:
 
-1.Go to your github profile => [Developer settings] => [Personal access token] => [Generate new token] on github.com
-2.Check read:packages
-3.Click Generate token
-4.Copy the generated token
-5.Add below lines to your ~/.gradle/gradle.properties (the path may be different on Windows) or export as environment variables:
-
-  ```
-  GITHUB_ACTOR={your github id}
-  GITHUB_TOKEN={the generated token}
-  ```
-Merge below lines to your /settings.gradle (If you are using the recent version of Android Gradle Plugin)
-  ```
-  dependencyResolutionManagement {
-    repositories {
-        maven {
-            url = uri("https://maven.pkg.github.com/BunnyWay/bunny-stream-android")
-            credentials {
-                // Use environment variables for GitHub Packages authentication
-                // Ensure GITHUB_ACTOR and GITHUB_TOKEN are set in your environment
-                // or gradle.properties file
-                username = providers.gradleProperty("gpr.user").orNull
-                    ?: providers.environmentVariable("GITHUB_ACTOR").orNull
-                    ?: System.getenv("GITHUB_ACTOR")
-                    ?: ""
-                password = providers.gradleProperty("gpr.key").orNull
-                    ?: providers.environmentVariable("GITHUB_TOKEN").orNull
-                    ?: System.getenv("GITHUB_TOKEN")
-                    ?: ""
-            }
-        }
-    }
-  }
-  ```
-  or to your /build.gradle
+  android/build.gradle.kt
   ```
   allprojects {
-      repositories {
-        maven {
-            url = uri("https://maven.pkg.github.com/BunnyWay/bunny-stream-android")
-            credentials {
-                // Use environment variables for GitHub Packages authentication
-                // Ensure GITHUB_ACTOR and GITHUB_TOKEN are set in your environment 
-                // or gradle.properties file
-                username = providers.gradleProperty("gpr.user").orNull
-                    ?: providers.environmentVariable("GITHUB_ACTOR").orNull
-                    ?: System.getenv("GITHUB_ACTOR")
-                    ?: ""
-                password = providers.gradleProperty("gpr.key").orNull
-                    ?: providers.environmentVariable("GITHUB_TOKEN").orNull
-                    ?: System.getenv("GITHUB_TOKEN")
-                    ?: ""
-            }
-        }
+    repositories {
+        google()
+        mavenCentral()
+        maven { url =uri("https://jitpack.io") } // add this line
     }
-  }
+  } 
   ```
+  update the minsdk 
+  ```
+  minSdk = 26
+  ```
+  `AndroidManifest.xml`
+  ```
+  <application
+    ....
+    android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+  ```
+  
+
+
 
 ## Usage
 
@@ -105,6 +72,8 @@ SizedBox(
     accessKey: 'your_bunny_stream_access_key',  // Optional
     videoId: 'your_video_id',                    // Required
     libraryId: your_library_id,                  // Required
+    token: 'your_secure_token',                  // Optional - for secured videos
+    expire: 20250922120000,                      // Optional - token expiration timestamp
   ),
 )
 ```
@@ -117,6 +86,23 @@ SizedBox(
 ### Optional Parameters
 
 - `accessKey` (String?): Your Bunny Stream access key for secured videos
+- `token` (String?): Secure token for authenticated video access
+- `expire` (int?): Token expiration timestamp (Unix timestamp format)
+
+### Token Authentication
+
+For secured videos that require authentication, you can use the `token` and `expire` parameters:
+
+```dart
+BunnyPlayerView(
+  videoId: "your-video-id",
+  libraryId: your_library_id,
+  token: "your_secure_token",     // Authentication token
+  expire: 20250922120000,         // Token expiration timestamp
+)
+```
+
+**Note:** When using token authentication, the `accessKey` parameter is not required as the token provides the necessary authentication.
 
 ### Sizing
 
@@ -154,6 +140,8 @@ class _MyAppState extends State<MyApp> {
               accessKey: null,  // Set to your access key if needed
               videoId: "your-video-id",
               libraryId: your_library_id,
+              token: null,      // Set to your secure token if needed
+              expire: null,     // Set to token expiration timestamp if using token
             ),
           ),
         ),

@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
-
-import 'package:flutter/services.dart';
 import 'package:flutter_bunny_video_player/flutter_bunny_video_player.dart';
 
 void main() {
