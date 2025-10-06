@@ -1,3 +1,7 @@
+## 1.0.6
+
+- Feat: Added Referer header to access video securly
+
 ## 1.0.4
 
 - Fix: thumbnail image size issue
