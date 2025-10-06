@@ -10,14 +10,16 @@ class BunnyPlayerView extends StatefulWidget {
   final String? accessKey;
   final String videoId;
   final int libraryId;
-    final String? token;
+  final String? token;
   final int? expire;
+  final String? referer;
   const BunnyPlayerView({
     super.key,
     required this.accessKey,
     required this.videoId,
     required this.libraryId,
     this.token,
+    this.referer,
     this.expire,
   });
 
@@ -28,12 +30,12 @@ class BunnyPlayerView extends StatefulWidget {
 class _BunnyPlayerViewState extends State<BunnyPlayerView> {
   @override
   void initState() {
-SystemChrome.setPreferredOrientations([
-  DeviceOrientation.portraitUp,
-  DeviceOrientation.portraitDown,
-  DeviceOrientation.landscapeLeft,
-  DeviceOrientation.landscapeRight,
-]);
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight,
+    ]);
     super.initState();
   }
 
@@ -42,13 +44,14 @@ SystemChrome.setPreferredOrientations([
     const viewType = 'bunny_player_view';
 
     if (Platform.isAndroid) {
-    return  BunnyStreamAndroidPlatformView(
+      return BunnyStreamAndroidPlatformView(
         viewType: viewType,
         accessKey: widget.accessKey,
         videoId: widget.videoId,
         libraryId: widget.libraryId,
         token: widget.token,
         expire: widget.expire,
+        referer: widget.referer,
       );
     }
     return const SizedBox();
@@ -62,7 +65,7 @@ class BunnyStreamAndroidPlatformView extends StatelessWidget {
   final int libraryId;
   final String? token;
   final int? expire;
-
+  final String? referer;
   const BunnyStreamAndroidPlatformView({
     super.key,
     required this.viewType,
@@ -71,6 +74,7 @@ class BunnyStreamAndroidPlatformView extends StatelessWidget {
     this.accessKey,
     this.token,
     this.expire,
+    this.referer,
   });
 
   @override
@@ -80,7 +84,8 @@ class BunnyStreamAndroidPlatformView extends StatelessWidget {
       'videoId': videoId,
       'libraryId': libraryId,
       'token': token,
-      'expire':expire,
+      'expire': expire,
+      'referer': referer,
     };
 
     return PlatformViewLink(
