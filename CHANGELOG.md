@@ -1,3 +1,9 @@
+## 1.0.7
+
+- Feat: Added `isPortrait` parameter to force portrait mode in video player
+- Feat: Enhanced orientation control for better mobile user experience
+- Updated documentation with portrait mode usage examples
+
 ## 1.0.6
 
 - Feat: Added Referer header to access video securly

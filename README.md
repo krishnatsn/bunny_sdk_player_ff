@@ -14,6 +14,9 @@ of the endorsed platform packages:
 - Native Android video player implementation
 - Seamless integration with Bunny.net streaming services
 - Support for both portrait and landscape orientations
+- Configurable portrait mode for consistent mobile experience
+- Token-based authentication for secured video access
+- Referer header support for enhanced security
 
 ## Installation
 
@@ -21,7 +24,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  flutter_bunny_video_player: ^1.0.3
+  flutter_bunny_video_player: ^1.0.7
 ```
 
 Or install via command line:
@@ -75,6 +78,8 @@ SizedBox(
     libraryId: your_library_id,                  // Required
     token: 'your_secure_token',                  // Optional - for secured videos
     expire: 20250922120000,                      // Optional - token expiration timestamp
+    referer: 'https://your-domain.com',          // Optional - for referer header security
+    isPortrait: true,                            // Optional - force portrait mode
   ),
 )
 ```
@@ -89,6 +94,8 @@ SizedBox(
 - `accessKey` (String?): Your Bunny Stream access key for secured videos
 - `token` (String?): Secure token for authenticated video access
 - `expire` (int?): Token expiration timestamp (Unix timestamp format)
+- `referer` (String?): Referer header for additional security when accessing videos
+- `isPortrait` (bool?): Force the video player to display in portrait mode (default: false)
 
 ### Token Authentication
 
@@ -100,10 +107,26 @@ BunnyPlayerView(
   libraryId: your_library_id,
   token: "your_secure_token",     // Authentication token
   expire: 20250922120000,         // Token expiration timestamp
+  referer: "https://your-domain.com", // Referer header for security
+  isPortrait: true,               // Force portrait mode
 )
 ```
 
 **Note:** When using token authentication, the `accessKey` parameter is not required as the token provides the necessary authentication.
+
+### Portrait Mode
+
+The `isPortrait` parameter allows you to force the video player to display in portrait mode, which is useful for mobile applications where you want to maintain a consistent portrait orientation:
+
+```dart
+BunnyPlayerView(
+  videoId: "your-video-id",
+  libraryId: your_library_id,
+  isPortrait: true,  // Forces portrait mode
+)
+```
+
+When `isPortrait` is set to `true`, the video player will maintain portrait orientation regardless of device rotation. When set to `false` or omitted, the player will follow the device's natural orientation behavior.
 
 ### Sizing
 
@@ -143,6 +166,8 @@ class _MyAppState extends State<MyApp> {
               libraryId: your_library_id,
               token: null,      // Set to your secure token if needed
               expire: null,     // Set to token expiration timestamp if using token
+              referer: null,    // Set to your domain for referer header security
+              isPortrait: false, // Set to true to force portrait mode
             ),
           ),
         ),
