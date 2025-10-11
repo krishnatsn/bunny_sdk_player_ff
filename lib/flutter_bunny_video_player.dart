@@ -13,6 +13,7 @@ class BunnyPlayerView extends StatefulWidget {
   final String? token;
   final int? expire;
   final String? referer;
+  final bool isPortrait;
   const BunnyPlayerView({
     super.key,
     required this.accessKey,
@@ -21,6 +22,7 @@ class BunnyPlayerView extends StatefulWidget {
     this.token,
     this.referer,
     this.expire,
+    this.isPortrait = false,
   });
 
   @override
@@ -52,6 +54,7 @@ class _BunnyPlayerViewState extends State<BunnyPlayerView> {
         token: widget.token,
         expire: widget.expire,
         referer: widget.referer,
+        isPortrait: widget.isPortrait,
       );
     }
     return const SizedBox();
@@ -66,6 +69,7 @@ class BunnyStreamAndroidPlatformView extends StatelessWidget {
   final String? token;
   final int? expire;
   final String? referer;
+  final bool isPortrait;
   const BunnyStreamAndroidPlatformView({
     super.key,
     required this.viewType,
@@ -75,6 +79,7 @@ class BunnyStreamAndroidPlatformView extends StatelessWidget {
     this.token,
     this.expire,
     this.referer,
+    required this.isPortrait,
   });
 
   @override
@@ -86,6 +91,7 @@ class BunnyStreamAndroidPlatformView extends StatelessWidget {
       'token': token,
       'expire': expire,
       'referer': referer,
+      'isPortrait': isPortrait,
     };
 
     return PlatformViewLink(

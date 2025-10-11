@@ -56,6 +56,7 @@ class BunnyVideoPlatformView(
         val expire = (creationParams?.get("expire") as? Number)?.toLong()
         val playIconAsset = creationParams?.get("playIconAsset") as? String
         val referer = creationParams?.get("referer") as? String
+        val isPortrait= creationParams?.get("isPortrait") as? Boolean
         rootView = LayoutInflater.from(wrappedContext)
             .inflate(R.layout.activity_flutter_bunny_video, null)
 
@@ -78,7 +79,9 @@ class BunnyVideoPlatformView(
                 expires = expire,
                 libraryId = libraryId,
                 videoTitle = "",
-                refererValue =referer
+                refererValue =referer,
+                isPortrait = isPortrait!!
+
             );
         }
         //
