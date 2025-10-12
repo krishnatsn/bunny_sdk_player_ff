@@ -14,6 +14,7 @@ class BunnyPlayerView extends StatefulWidget {
   final int? expire;
   final String? referer;
   final bool isPortrait;
+  final bool isScreenShotProtectEnable;
   const BunnyPlayerView({
     super.key,
     required this.accessKey,
@@ -23,6 +24,7 @@ class BunnyPlayerView extends StatefulWidget {
     this.referer,
     this.expire,
     this.isPortrait = false,
+    this.isScreenShotProtectEnable = false,
   });
 
   @override
@@ -55,6 +57,7 @@ class _BunnyPlayerViewState extends State<BunnyPlayerView> {
         expire: widget.expire,
         referer: widget.referer,
         isPortrait: widget.isPortrait,
+        isScreenShotProtectEnable: widget.isScreenShotProtectEnable,
       );
     }
     return const SizedBox();
@@ -70,6 +73,7 @@ class BunnyStreamAndroidPlatformView extends StatelessWidget {
   final int? expire;
   final String? referer;
   final bool isPortrait;
+  final bool isScreenShotProtectEnable;
   const BunnyStreamAndroidPlatformView({
     super.key,
     required this.viewType,
@@ -80,6 +84,7 @@ class BunnyStreamAndroidPlatformView extends StatelessWidget {
     this.expire,
     this.referer,
     required this.isPortrait,
+    required this.isScreenShotProtectEnable,
   });
 
   @override
@@ -92,6 +97,7 @@ class BunnyStreamAndroidPlatformView extends StatelessWidget {
       'expire': expire,
       'referer': referer,
       'isPortrait': isPortrait,
+      'isScreenShotProtectEnable': isScreenShotProtectEnable,
     };
 
     return PlatformViewLink(

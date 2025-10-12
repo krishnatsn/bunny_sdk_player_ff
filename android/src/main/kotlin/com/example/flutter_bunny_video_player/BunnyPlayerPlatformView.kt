@@ -57,12 +57,14 @@ class BunnyVideoPlatformView(
         val playIconAsset = creationParams?.get("playIconAsset") as? String
         val referer = creationParams?.get("referer") as? String
         val isPortrait= creationParams?.get("isPortrait") as? Boolean
+        val isScreenShotProtectEnable = creationParams?.get("isScreenShotProtectEnable") as? Boolean
         rootView = LayoutInflater.from(wrappedContext)
             .inflate(R.layout.activity_flutter_bunny_video, null)
 
         BunnyStreamApi.initialize(context, accessKey, libraryId)
 
         val videoPlayer = rootView.findViewById<BunnyStreamPlayer>(R.id.videoPlayer)
+        videoPlayer.enableFlutterOptimizations()
         videoPlayer.iconSet = PlayerIconSet(
             rewindIcon = R.drawable.ic_replay,
             forwardIcon = R.drawable.ic_forward,
@@ -80,7 +82,8 @@ class BunnyVideoPlatformView(
                 libraryId = libraryId,
                 videoTitle = "",
                 refererValue =referer,
-                isPortrait = isPortrait!!
+                isPortrait = isPortrait!!,
+                isScreenshotProtectionEnabled = isScreenShotProtectEnable!!
 
             );
         }
