@@ -17,6 +17,7 @@ of the endorsed platform packages:
 - Configurable portrait mode for consistent mobile experience
 - Token-based authentication for secured video access
 - Referer header support for enhanced security
+- No Screenshot , No screen recording support
 
 ## Installation
 
@@ -35,7 +36,7 @@ flutter pub add flutter_bunny_video_player
 
 Add the following Gradle configuration to your Android:
 
-  android/build.gradle.kt
+  `android/build.gradle.kt`
   ```
   allprojects {
     repositories {
@@ -45,6 +46,12 @@ Add the following Gradle configuration to your Android:
     }
   } 
   ```
+  `android/app/proguard-rules.pro`
+  ```
+  # Keep your app’s data/parcelable classes
+  -keep class net.bunny.bunnystreamplayer.** { *; }
+  ```
+
   update the minsdk 
   ```
   minSdk = 26
@@ -80,6 +87,7 @@ SizedBox(
     expire: 20250922120000,                      // Optional - token expiration timestamp
     referer: 'https://your-domain.com',          // Optional - for referer header security
     isPortrait: true,                            // Optional - force portrait mode
+    isScreenShotProtectEnable:true               // Optional - this is no-screenshot,no-screen recording support
   ),
 )
 ```
