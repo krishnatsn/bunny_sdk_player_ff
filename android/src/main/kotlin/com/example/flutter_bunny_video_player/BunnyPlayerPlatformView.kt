@@ -64,7 +64,6 @@ class BunnyVideoPlatformView(
         BunnyStreamApi.initialize(context, accessKey, libraryId)
 
         val videoPlayer = rootView.findViewById<BunnyStreamPlayer>(R.id.videoPlayer)
-        videoPlayer.enableFlutterOptimizations()
         videoPlayer.iconSet = PlayerIconSet(
             rewindIcon = R.drawable.ic_replay,
             forwardIcon = R.drawable.ic_forward,
