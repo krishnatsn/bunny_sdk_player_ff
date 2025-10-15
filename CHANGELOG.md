@@ -1,3 +1,9 @@
+## 1.0.8
+
+- Feat: Added No-Screenshot,No-Screen-recording protection
+- Fix: release mode apk & .aab crash in production by using progurade-rules
+
+
 ## 1.0.7
 
 - Feat: Added `isPortrait` parameter to force portrait mode in video player
