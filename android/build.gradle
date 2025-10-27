@@ -73,8 +73,8 @@ android {
 dependencies {
     // ✅ Switch from JitPack to Maven Central artifacts:
     // Replace versions with the current ones on Maven Central if needed.
-    implementation "net.bunny:player:3.+"
-    implementation "net.bunny:api:1.+"
+    implementation "net.bunny:player:3.0.0"
+    implementation "net.bunny:api:3.0.0"
 
     implementation 'androidx.appcompat:appcompat:1.7.1'
     implementation 'com.google.android.material:material:1.12.0'
