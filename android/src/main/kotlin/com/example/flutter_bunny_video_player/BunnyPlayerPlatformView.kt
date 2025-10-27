@@ -2,6 +2,9 @@ package com.example.flutter_bunny_video_player
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import net.bunny.bunnystreamapi.BunnyStreamApi
+import net.bunny.bunnystreamplayer.ui.BunnyStreamPlayer
+
 import android.content.Context
 import android.content.ContextWrapper
 import android.content.pm.ActivityInfo
