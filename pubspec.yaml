@@ -1,6 +1,6 @@
 name: bunny_sdk_player_ff
 description: Bunny Stream native Android player for Flutter (Maven Central)
-version: 0.0.4
+version: 0.0.5
 homepage: https://github.com/krishnatsn/bunny_sdk_player_ff
 repository: https://github.com/krishnatsn/bunny_sdk_player_ff
 
