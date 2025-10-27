@@ -11,7 +11,7 @@ import net.bunny.bunnystreamplayer.model.PlayerIconSet
 import net.bunny.bunnystreamplayer.ui.BunnyStreamPlayer
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-class BunnyPlayerPlatformView(
+class BunnyVideoPlatformView(
     context: Context,
     creationParams: Map<String, Any>?,
 ) : PlatformView {
