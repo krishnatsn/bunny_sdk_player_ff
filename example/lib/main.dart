@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bunny_video_player/flutter_bunny_video_player.dart';
+import 'package:bunny_sdk_player_ff/flutter_bunny_video_player.dart';
 
 void main() {
   runApp(const MyApp());
