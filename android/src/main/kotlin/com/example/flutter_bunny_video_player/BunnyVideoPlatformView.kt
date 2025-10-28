@@ -35,13 +35,7 @@ class BunnyVideoPlatformView(
         BunnyStreamApi.initialize(context.applicationContext, accessKey, libraryId)
 
         val videoPlayer = rootView.findViewById<BunnyStreamPlayer>(R.id.videoPlayer)
-        videoPlayer.iconSet = PlayerIconSet(
-            rewindIcon = R.drawable.ic_replay,
-            forwardIcon = R.drawable.ic_forward,
-            settingsIcon = R.drawable.ic_setting,
-            fullscreenOnIcon = R.drawable.ic_fullscreen,
-            fullscreenOffIcon = R.drawable.ic_fullscreen_exit,
-        )
+       
 
         if (videoId.isNotEmpty()) {
             // --- Auto-resume: seek to last saved position (if any)
